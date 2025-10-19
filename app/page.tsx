@@ -43,47 +43,59 @@ function formatHijri(date: Date) {
 
 export default function Home() {
   const now = useNow();
+  const myStyle: React.CSSProperties = {
+    fontSize: "16px",
+    fontWeight: "bold",
+    backgroundColor: "red",
+    color: "white",
+  };
   return (
-    <div className="h-screen w-screen bg-neutral-950 text-neutral-50 flex justify-center items-center">
-      <div className="w-full flex flex-col p-6">
-        <header className="mb-16 flex flex-col justify-between items-center gap-3">
-          <div className="text-neutral-50 font-bold text-[256px]">
-            {formatTime(now)}
-            <span className="text-7xl text-neutral-400">p.m.</span>
-          </div>
-          <div className="text-neutral-400 text-7xl">
-            {formatGregorian(now)}
-          </div>
-          <div className="text-neutral-400 text-7xl">{formatHijri(now)}</div>
-        </header>
-
-        <section
-          id="prayer-times"
-          className="flex gap-5 justify-between items-start"
-        >
-          <PrayerCard label="Fajr" time="05:12" ikame="07:00" />
-          <PrayerCard label="Dhuhr" time="12:45" ikame="02:00" />
-          <PrayerCard label="Asr" time="4:41" ikame="05:00" />
-          <PrayerCard label="Maghrib" time="6:11" ikame="06:37" />
-          <PrayerCard label="Isha" time="7:29" ikame="08:05" active />
-        </section>
-
-        <section id="jumaah-info" className="">
-          <InfoCard
-            title="Jumuah"
-            value={"2:00"}
-            subtitle=""
-            accent="from-emerald-400 to-lime-300"
-          />
-        </section>
-
-        <footer className="flex items-center justify-between pt-2 border-t border-neutral-800">
-          <div className="text-neutral-400 text-[clamp(12px,1.6vw,18px)]">
-            Toronto, ON • 336 Pape Ave, Toronto, ON M4M 2W7
-          </div>
-        </footer>
+    <>
+      <div style={myStyle}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat autem,
+        sit quasi atque illum iusto?
       </div>
-    </div>
+      <div className="h-screen w-screen bg-neutral-950 text-neutral-50 flex justify-center items-center">
+        <div className="w-full flex flex-col p-6">
+          <header className="mb-16 flex flex-col justify-between items-center gap-3">
+            <div className="text-neutral-50 font-bold text-[256px]">
+              {formatTime(now)}
+              <span className="text-7xl text-neutral-400">p.m.</span>
+            </div>
+            <div className="text-neutral-400 text-7xl">
+              {formatGregorian(now)}
+            </div>
+            <div className="text-neutral-400 text-7xl">{formatHijri(now)}</div>
+          </header>
+
+          <section
+            id="prayer-times"
+            className="flex gap-5 justify-between items-start"
+          >
+            <PrayerCard label="Fajr" time="05:12" ikame="07:00" />
+            <PrayerCard label="Dhuhr" time="12:45" ikame="02:00" />
+            <PrayerCard label="Asr" time="4:41" ikame="05:00" />
+            <PrayerCard label="Maghrib" time="6:11" ikame="06:37" />
+            <PrayerCard label="Isha" time="7:29" ikame="08:05" active />
+          </section>
+
+          <section id="jumaah-info" className="">
+            <InfoCard
+              title="Jumuah"
+              value={"2:00"}
+              subtitle=""
+              accent="from-emerald-400 to-lime-300"
+            />
+          </section>
+
+          <footer className="flex items-center justify-between pt-2 border-t border-neutral-800">
+            <div className="text-neutral-400 text-[clamp(12px,1.6vw,18px)]">
+              Toronto, ON • 336 Pape Ave, Toronto, ON M4M 2W7
+            </div>
+          </footer>
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -46,38 +46,35 @@ export default function Home() {
   return (
     <div className="h-screen w-screen bg-neutral-950 text-neutral-50 flex justify-center items-center">
       <div className="w-full flex flex-col p-6">
-        <header className="mb-16 flex justify-between items-center gap-3">
-          <div className="w-1/2 flex flex-col p-2">
-            <div className="text-neutral-50 font-bold text-9xl">
-              {formatTime(now)}
-            </div>
-            <div className="text-neutral-400 text-3xl">
-              {formatGregorian(now)}
-            </div>
-            <div className="text-neutral-400 text-3xl">{formatHijri(now)}</div>
+        <header className="mb-16 flex flex-col justify-between items-center gap-3">
+          <div className="text-neutral-50 font-bold text-[256px]">
+            {formatTime(now)}
+            <span className="text-7xl text-neutral-400">p.m.</span>
           </div>
-          <div className="w-1/2 flex gap-5">
-            <InfoCard
-              title="Cuma (Jumuah)"
-              value={"2:00"}
-              subtitle="Hutbe & Cemaat"
-              accent="from-emerald-400 to-lime-300"
-            />
-            <InfoCard
-              title="Güneş"
-              value={"7:28"}
-              subtitle=""
-              accent="from-emerald-400 to-lime-300"
-            />
+          <div className="text-neutral-400 text-7xl">
+            {formatGregorian(now)}
           </div>
+          <div className="text-neutral-400 text-7xl">{formatHijri(now)}</div>
         </header>
 
-        <section id="prayer-times" className="flex gap-5 justify-between mb-16">
-          <PrayerCard label="Sabah" time="05:12" ikame="07:00" />
-          <PrayerCard label="Öğle" time="12:45" ikame="02:00" />
-          <PrayerCard label="İkindi" time="4:41" ikame="05:00" />
-          <PrayerCard label="Akşam" time="6:11" ikame="06:37" />
-          <PrayerCard label="Yatsı" time="7:29" ikame="08:05" active />
+        <section
+          id="prayer-times"
+          className="flex gap-5 justify-between items-start"
+        >
+          <PrayerCard label="Fajr" time="05:12" ikame="07:00" />
+          <PrayerCard label="Dhuhr" time="12:45" ikame="02:00" />
+          <PrayerCard label="Asr" time="4:41" ikame="05:00" />
+          <PrayerCard label="Maghrib" time="6:11" ikame="06:37" />
+          <PrayerCard label="Isha" time="7:29" ikame="08:05" active />
+        </section>
+
+        <section id="jumaah-info" className="">
+          <InfoCard
+            title="Jumuah"
+            value={"2:00"}
+            subtitle=""
+            accent="from-emerald-400 to-lime-300"
+          />
         </section>
 
         <footer className="flex items-center justify-between pt-2 border-t border-neutral-800">
@@ -103,13 +100,14 @@ function InfoCard({
 }) {
   return (
     <div
-      className={`w-full flex flex-col gap-1 rounded-2xl p-5 bg-neutral-900/60 border border-neutral-800 shadow-xl`}
+      className={`w-2/5 p-2 flex justify-center items-center gap-1 rounded-2xl bg-neutral-900/60 border border-neutral-800 shadow-xl mx-auto`}
     >
-      <div className="text-neutral-300 text-[clamp(14px,1.8vw,22px)] mb-1">
-        {title}
+      <div className="text-neutral-50 text-9xl mb-1 font-semibold">
+        {title}:
       </div>
-      <div className="font-bold tabular-nums text-[clamp(36px,6.8vw,88px)] leading-none">
-        {value}
+      <div className="font-bold text-neutral-300 text-9xl leading-none">
+        &nbsp;{value}
+        <span className="text-6xl">p.m.</span>
       </div>
       {subtitle && (
         <div className="mt-1 text-neutral-500 text-[clamp(12px,1.6vw,18px)]">
@@ -140,7 +138,7 @@ function PrayerCard({
       className={`w-1/2 rounded-3xl p-3 border shadow-xl transition-colors ${active ? "border-emerald-400/70 bg-emerald-500/10" : "border-neutral-800 bg-neutral-900/60"}`}
     >
       <div className="flex items-center justify-between mb-7">
-        <div className="text-4xl text-neutral-50 font-bold">{label}</div>
+        <div className="text-[140px] text-neutral-50 font-bold">{label}</div>
         {/* active && (
           <span className="text-[clamp(12px,1.8vw,18px)] px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/50">
             Sıradaki
@@ -148,15 +146,25 @@ function PrayerCard({
     )*/}
       </div>
       <div>
-        <div className="text-xl text-neutral-300">Ezan Vakti:</div>
-        <span className="text-5xl  text-neutral-300">{time}</span>
+        <div className="text-4xl text-neutral-300">Adhan Time:</div>
+        <span className="text-[160px]  text-neutral-300">{time}</span>
+        <span className="text-7xl text-neutral-400">
+          {label === "Fajr" ? "a.m." : "p.m"}
+        </span>
+
         <div className={`w-full h-0.5 bg-neutral-500 rounded-full my-3`} />
-        {label === "Güneş" ? null : (
+
+        <div className="text-4xl text-neutral-50 font-semibold">Iqama:</div>
+        <span className="text-[160px] text-neutral-50">{ikame}</span>
+        <span className="text-6xl text-neutral-400">a.m.</span>
+        {label === "Fajr" && (
           <>
-            <div className="text-2xl text-neutral-50 font-semibold">
-              Ikame Vakti:
+            <div className={`w-full h-0.5 bg-neutral-500 rounded-full my-3`} />
+            <div className="text-4xl text-neutral-50 font-semibold">
+              Sunrise:
             </div>
-            <span className="text-8xl text-neutral-50">{ikame}</span>
+            <span className="text-[160px] text-neutral-50">{"07:30"}</span>
+            <span className="text-6xl text-neutral-400">a.m.</span>
           </>
         )}
       </div>

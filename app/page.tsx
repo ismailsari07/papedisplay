@@ -140,24 +140,23 @@ function PrayerCard({
       className={`w-1/2 rounded-3xl p-3 border shadow-xl transition-colors ${active ? "border-emerald-400/70 bg-emerald-500/10" : "border-neutral-800 bg-neutral-900/60"}`}
     >
       <div className="flex items-center justify-between mb-7">
-        <div className="text-4xl text-neutral-300 font-bold">{label}</div>
+        <div className="text-4xl text-neutral-50 font-bold">{label}</div>
         {/* active && (
           <span className="text-[clamp(12px,1.8vw,18px)] px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/50">
             Sıradaki
           </span>
     )*/}
       </div>
-      <div className="">
-        <div className="text-2xl text-neutral-400 font-semibold">
-          Ezan Vakti:
-        </div>
-        <span className="text-8xl">{time}</span>
+      <div>
+        <div className="text-xl text-neutral-300">Ezan Vakti:</div>
+        <span className="text-5xl  text-neutral-300">{time}</span>
+        <div className={`w-full h-0.5 bg-neutral-500 rounded-full my-3`} />
         {label === "Güneş" ? null : (
           <>
-            <div className="text-2xl text-neutral-400 font-semibold">
+            <div className="text-2xl text-neutral-50 font-semibold">
               Ikame Vakti:
             </div>
-            <span className="text-8xl">{ikame}</span>
+            <span className="text-8xl text-neutral-50">{ikame}</span>
           </>
         )}
       </div>

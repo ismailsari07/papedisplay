@@ -72,7 +72,7 @@ export default function Home() {
         >
           <div className="flex gap-5">
             <PrayerCard label="Sabah" time="05:12" ikame="07:00" />
-            <PrayerCard label="Güneş" time="07:28" />
+            <PrayerCard label="Güneş" time="07:28" ikame="" />
           </div>
           <div className="flex gap-5">
             <PrayerCard label="Öğle" time="12:45" ikame="02:00" />
